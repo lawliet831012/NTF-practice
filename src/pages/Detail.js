@@ -1,5 +1,7 @@
 import React, { useEffect, useContext, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import isEmpty from "lodash/isEmpty";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { DetailFixedButton, DetailHeader } from "../components";
 import { DetailContext } from "../contexts";
@@ -21,24 +23,27 @@ const Detail = (props) => {
   }, [setDetail, address, id]);
 
   useEffect(() => {
+    //if request failed then return to index page
     if (detail === undefined) {
       setDetail({});
       navigate("/");
     }
   }, [detail, setDetail, navigate]);
 
-  console.log(detail);
-
   return (
     <div className={classes.container}>
-      <DetailHeader name={detail.name} />
-      <div>
-        <img src={detail.image_url} alt="" />
-      </div>
+      {isEmpty(detail) ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <DetailHeader name={detail.name} />
+          <img className={classes.image} src={detail.image_url} alt="" />
 
-      <h1>{detail.name}</h1>
-      <h2>{detail.description}</h2>
-      <DetailFixedButton url={detail.permalink} />
+          <h1>{detail.name}</h1>
+          <h2>{detail.description}</h2>
+          <DetailFixedButton url={detail.permalink} />
+        </>
+      )}
     </div>
   );
 };

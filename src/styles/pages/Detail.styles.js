@@ -8,5 +8,8 @@ export default makeStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
+  },
+  image: {
+    width: '100%',
   }
 }));

@@ -1,6 +1,5 @@
-import React, { useEffect, useContext, useMemo, useCallback } from "react";
+import React, { useEffect, useContext, useMemo } from "react";
 import Grid from "@mui/material/Grid";
-import { useNavigate } from "react-router-dom";
 
 import { NftCard } from "../components";
 import { ListContext } from "../contexts";
